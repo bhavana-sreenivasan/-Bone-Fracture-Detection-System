@@ -1,16 +1,9 @@
 # Bone Fracture Detection System
 
-[![MATLAB](https://img.shields.io/badge/MATLAB-R2023a+-orange.svg)](https://www.mathworks.com/products/matlab.html)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 Automated bone fracture detection in X-ray images using machine learning and advanced image processing techniques.
-
-![Sample Detection](docs/images/sample_detection.png)
-*Example: Automated fracture detection with severity classification*
-
 ---
 
-## 🎯 Overview
+##  Overview
 
 This system automatically detects and classifies bone fractures in X-ray images using:
 - **Random Forest classifier** with 82% F1-score
@@ -19,14 +12,14 @@ This system automatically detects and classifies bone fractures in X-ray images 
 - **Adaptive filtering** for robust detection across varying image qualities
 
 **Key Results:**
-- ✅ **82% F1-score** on FracAtlas dataset (4,000+ images)
-- ✅ **2.5 seconds/image** processing speed
-- ✅ **35% reduction** in false positives
-- ✅ **40% improvement** in border fracture detection
+-  **82% F1-score** on FracAtlas dataset (4,000+ images)
+-  **2.5 seconds/image** processing speed
+-  **35% reduction** in false positives
+-  **40% improvement** in border fracture detection
 
 ---
 
-## 🚀 Features
+##  Features
 
 ### Core Capabilities
 - **Automated Detection**: Processes X-ray images without manual intervention
@@ -43,7 +36,7 @@ This system automatically detects and classifies bone fractures in X-ray images 
 
 ---
 
-## 📊 Performance
+##  Performance
 
 | Metric | Value |
 |--------|-------|
@@ -58,7 +51,7 @@ This system automatically detects and classifies bone fractures in X-ray images 
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Language**: MATLAB R2023a+
 - **ML/CV**: Image Processing Toolbox, Computer Vision Toolbox, Statistics & Machine Learning Toolbox
@@ -67,7 +60,7 @@ This system automatically detects and classifies bone fractures in X-ray images 
 
 ---
 
-## 📥 Installation
+##  Installation
 
 ### Prerequisites
 ```matlab
@@ -90,7 +83,7 @@ cd bone-fracture-detection
 
 ---
 
-## 🎮 Usage
+##  Usage
 
 ### Quick Start - Single Image
 ```matlab
@@ -116,22 +109,6 @@ CONFIG.imagesPath = fullfile(CONFIG.datasetPath, 'images');
 run fracture_detection_batch.m
 
 % Results saved to: ./results/batch_results.mat
-```
-
-### Expected Output
-```
-=== FINAL: 4 FRACTURES DETECTED ===
-Border fractures: 1
-
-  #1: Moderate (40%), Confidence: 78.2%, Area: 187px
-  #2: [BORDER] Moderate (40%), Confidence: 72.5%, Area: 156px
-  #3: Minor (20%), Confidence: 68.1%, Area: 94px
-  #4: Moderate (40%), Confidence: 81.3%, Area: 203px
-
-Preprocessing Quality:
-  CLAHE PSNR: 28.5 dB
-  Denoising SNR: 24.6 dB
-  Edge preservation: 87.3%
 ```
 
 ---
@@ -193,54 +170,23 @@ Output: Detected Fractures + Visualization
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 bone-fracture-detection/
 ├── src/
-│   ├── fracture_detection_main.m         # Single image processing
-│   ├── fracture_detection_batch.m        # Batch processing
-│   └── (helper functions organized in code)
+│   ├── fracture_detection_main.m         
 │
-├── docs/
-│   ├── SETUP_GUIDE.md                    # Detailed setup instructions
-│   ├── METHODOLOGY.md                    # Technical methodology
-│   └── images/                           # Documentation images
-│
-├── results/                              # Sample outputs
+├── results/                              
 │   └── sample_detection.png
 │
-├── tests/                                # Unit tests (future)
-│
-├── README.md                             # This file
-├── LICENSE                               # MIT License
+├── README.md                             
 └── .gitignore                            # Git ignore rules
 ```
 
 ---
 
-## 🧪 Results & Evaluation
-
-### Sample Detections
-
-| Image | Ground Truth | Detected | Status |
-|-------|-------------|----------|--------|
-| fracture_001.png | Yes (2) | 2 | ✅ True Positive |
-| fracture_015.png | Yes (1) | 1 | ✅ True Positive |
-| normal_042.png | No | 0 | ✅ True Negative |
-| fracture_089.png | Yes (3) | 2 | ⚠️ Missed 1 |
-
-### Confusion Matrix
-```
-                  Predicted
-                  Pos    Neg
-Actual    Pos     156    24     (87% recall)
-          Neg     43     177    (80% precision)
-```
-
----
-
-## 🎯 Key Achievements
+##  Key Achievements
 
 ### Problem 1: Multiple Overlapping Detections
 **Challenge**: Same fracture detected 2-3 times at nearby locations
@@ -262,91 +208,3 @@ Actual    Pos     156    24     (87% recall)
 
 ---
 
-## 🔧 Configuration
-
-Key parameters in `CONFIG` struct:
-
-```matlab
-CONFIG.useAdvancedFeatures = true;      % Gabor + HOG (slower, more accurate)
-CONFIG.useEnsemble = true;               % Random Forest vs Decision Tree
-CONFIG.confidenceThreshold = 0.6;        % 60% confidence minimum
-CONFIG.nmsDistance = 30;                 # NMS merge distance (pixels)
-CONFIG.borderWidth = 40;                 % Border region width
-```
-
-### Tuning Guide
-- **More sensitive**: Lower `confidenceThreshold` to 0.5
-- **Faster processing**: Set `useAdvancedFeatures = false` (2x speedup)
-- **Fewer duplicates**: Increase `nmsDistance` to 40-50
-- **Better border detection**: Increase `borderWidth` to 50-60
-
----
-
-## 📚 Documentation
-
-- **[Setup Guide](docs/SETUP_GUIDE.md)**: Detailed installation and configuration
-- **[Methodology](docs/METHODOLOGY.md)**: Algorithm explanations and theory
-- **[FracAtlas Guide](docs/FRACATLAS_GUIDE.md)**: Dataset integration instructions
-
----
-
-## 🤝 Contributing
-
-Contributions welcome! Please:
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/improvement`)
-3. Commit changes (`git commit -am 'Add improvement'`)
-4. Push to branch (`git push origin feature/improvement`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- **Dataset**: [FracAtlas](https://figshare.com/articles/dataset/The_dataset/22363012) - Large-scale fracture detection dataset
-- **Inspiration**: Clinical need for automated fracture detection to assist radiologists
-- **Tools**: MATLAB Image Processing and Computer Vision Toolboxes
-
----
-
-## 📧 Contact
-
-**Your Name** - [@your_twitter](https://twitter.com/your_twitter) - your.email@example.com
-
-Project Link: [https://github.com/YOUR_USERNAME/bone-fracture-detection](https://github.com/YOUR_USERNAME/bone-fracture-detection)
-
----
-
-## 📊 Citation
-
-If you use this code in your research, please cite:
-
-```bibtex
-@software{bone_fracture_detection,
-  author = {Your Name},
-  title = {Bone Fracture Detection System},
-  year = {2024},
-  url = {https://github.com/YOUR_USERNAME/bone-fracture-detection}
-}
-```
-
----
-
-## 🔮 Future Improvements
-
-- [ ] Deep learning integration (CNN-based detection)
-- [ ] Real-time processing (<1 sec/image)
-- [ ] Multi-class bone type classification
-- [ ] Web interface for clinicians
-- [ ] DICOM format support
-- [ ] 3D fracture reconstruction
-
----
-
-**⭐ Star this repo if you find it helpful!**
