@@ -72,10 +72,6 @@ This system automatically detects and classifies bone fractures in X-ray images 
 
 ### Setup
 ```bash
-# Clone repository
-git clone https://github.com/YOUR_USERNAME/bone-fracture-detection.git
-cd bone-fracture-detection
-
 # Download FracAtlas dataset (optional for testing)
 # https://figshare.com/articles/dataset/The_dataset/22363012
 # Extract to: ./data/FracAtlas/
